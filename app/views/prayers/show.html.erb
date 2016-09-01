@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @prayer.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @prayer.description %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @prayer.category %>
+</p>
+
+<p>
+  <strong>Pray:</strong>
+  <%= @prayer.pray %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @prayer.status %>
+</p>
+
+<%= link_to 'Edit', edit_prayer_path(@prayer) %> |
+<%= link_to 'Back', prayers_path %>
