@@ -1,6 +1,6 @@
 class PrayersController < ApplicationController
   before_action :set_prayer, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, only: :index 
   # GET /prayers
   # GET /prayers.json
   def index
