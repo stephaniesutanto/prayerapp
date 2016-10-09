@@ -6,6 +6,12 @@ body {
   line-height: 18px;
 }
 
+.btn-primary {
+  &:visited {
+  color: #fff;
+  }
+}
+
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;

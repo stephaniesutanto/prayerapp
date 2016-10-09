@@ -4,4 +4,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :prayers
+  has_many :favorite_prayers
+  has_many :favorites, through: :favorite_prayers, source: :prayer
 end

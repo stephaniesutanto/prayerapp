@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   root to: 'prayers#index'
 
-  resources :prayers
+  resources :prayers do
+    get "my_prayers", on: :collection
+    put :favorite, on: :member
+    get "added_prayers", on: :collection
+    resources :prayers, only: :create
+  end
 
   devise_for :users
 end

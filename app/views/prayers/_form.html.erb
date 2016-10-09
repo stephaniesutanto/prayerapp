@@ -24,14 +24,12 @@
     <%= f.text_field :category %>
   </div>
   <div class="field">
-    <%= f.label :pray %><br>
-    <%= f.check_box :pray %>
-  </div>
-  <div class="field">
-    <%= f.label :status %><br>
+    <%= f.label :Answered %><br>
     <%= f.check_box :status %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
+    Add/Update Prayer
+    <% end %>
   </div>
 <% end %>

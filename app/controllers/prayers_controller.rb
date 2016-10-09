@@ -4,8 +4,13 @@ class PrayersController < ApplicationController
   # GET /prayers
   # GET /prayers.json
   def index
+    if params[:user_id].present?
+      @prayers = User.find(params[:user_id]).prayers
+    else
     @prayers = Prayer.all
+    end
   end
+
 
   # GET /prayers/1
   # GET /prayers/1.json
@@ -23,8 +28,35 @@ class PrayersController < ApplicationController
 
   # POST /prayers
   # POST /prayers.json
+
+  def my_prayers
+    @prayers = current_user.prayers
+  end
+
+
+  def favorite
+    @prayer = Prayer.find(params[:id])
+    type = params[:type]
+    if type == "favorite"
+      current_user.favorites << @prayer
+      redirect_to :back, notice: "Prayer has been added!"
+
+    elsif type == "unfavorite"
+      current_user.favorites.delete(@prayer)
+      redirect_to :back, notice: "Prayer has been removed"
+
+    else 
+      redirect_to :back, notice: "Nothing happened."
+    end
+  end
+  
+  def added_prayers
+    @prayers = current_user.favorites
+  end
+
+
   def create
-    @prayer = Prayer.new(prayer_params)
+    @prayer = current_user.prayers.new(prayer_params)
 
     respond_to do |format|
       if @prayer.save

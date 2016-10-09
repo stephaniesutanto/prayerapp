@@ -2,6 +2,7 @@ class CreatePrayers < ActiveRecord::Migration
   def change
     create_table :prayers do |t|
       t.string :name
+      t.string :lister
       t.text :description
       t.string :category
       t.boolean :pray

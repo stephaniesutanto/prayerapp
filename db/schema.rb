@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160903072409) do
+ActiveRecord::Schema.define(version: 20161008071158) do
+
+  create_table "favorite_prayers", force: :cascade do |t|
+    t.integer  "prayer_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "items", force: :cascade do |t|
     t.integer  "prayer_id"
@@ -23,6 +30,7 @@ ActiveRecord::Schema.define(version: 20160903072409) do
 
   create_table "prayers", force: :cascade do |t|
     t.string   "name"
+    t.string   "lister"
     t.text     "description"
     t.string   "category"
     t.boolean  "pray"
@@ -35,6 +43,7 @@ ActiveRecord::Schema.define(version: 20160903072409) do
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
+    t.string   "name"
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
