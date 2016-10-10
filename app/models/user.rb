@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
   has_many :prayers
   has_many :favorite_prayers
   has_many :favorites, through: :favorite_prayers, source: :prayer
+  has_many :comments, dependent: :destroy
 end

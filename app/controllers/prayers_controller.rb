@@ -15,6 +15,7 @@ class PrayersController < ApplicationController
   # GET /prayers/1
   # GET /prayers/1.json
   def show
+    @comments = Comment.where(prayer_id: @prayer).order("created_at DESC")
   end
 
   # GET /prayers/new

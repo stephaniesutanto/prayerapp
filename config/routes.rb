@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     put :favorite, on: :member
     get "added_prayers", on: :collection
     resources :prayers, only: :create
+    resources :comments 
   end
 
   devise_for :users
