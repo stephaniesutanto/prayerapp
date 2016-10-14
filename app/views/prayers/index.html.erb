@@ -15,11 +15,12 @@
 <table class="table table-striped table-bordered">
   <thead>
     <tr>
+      <th>Date Posted</th>
       <th>Title</th>
       <th>Lister</th>
       <th>Description</th>
       <th>Category</th>
-      <th>Answered</th>
+      <th>Answered Status</th>
       <th colspan="3">Actions</th>
     </tr>
   </thead>
@@ -27,11 +28,18 @@
   <tbody>
     <% @prayers.each do |prayer| %>
       <tr>
+        <td><%= prayer.created_at.strftime("%B %d %Y, %l:%M%P") %></td>
         <td><%= prayer.name %></td>
         <td><%= prayer.user.name %></td>
         <td><%= prayer.description %></td>
         <td><%= prayer.category %></td>
-        <td><%= prayer.status %></td>
+        <td>
+          <% if prayer.status? %>
+          <%= 'Yes' %>
+          <% else %>
+          <%= 'Not yet' %>
+          <% end %>
+        </td>
         <td>
           <% if prayer.user.name == current_user.name %>
             <%= link_to 'Edit', edit_prayer_path(prayer) %>
