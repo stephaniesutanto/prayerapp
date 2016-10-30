@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  groupname: MyString
+  prayer_id: 
+  user_id: 
+
+two:
+  groupname: MyString
+  prayer_id: 
+  user_id: 

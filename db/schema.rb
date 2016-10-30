@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161010143929) do
+ActiveRecord::Schema.define(version: 20161030131734) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -31,6 +31,28 @@ ActiveRecord::Schema.define(version: 20161010143929) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "groups", force: :cascade do |t|
+    t.string   "groupname"
+    t.integer  "group_id"
+    t.integer  "prayer_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "groups", ["prayer_id"], name: "index_groups_on_prayer_id"
+  add_index "groups", ["user_id"], name: "index_groups_on_user_id"
+
+  create_table "invites", force: :cascade do |t|
+    t.string   "email"
+    t.integer  "group_id"
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.string   "token"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "items", force: :cascade do |t|
     t.integer  "prayer_id"
     t.integer  "user_id"
@@ -38,6 +60,26 @@ ActiveRecord::Schema.define(version: 20161010143929) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "memberships", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "memberships", ["group_id"], name: "index_memberships_on_group_id"
+  add_index "memberships", ["user_id"], name: "index_memberships_on_user_id"
+
+  create_table "prayer_groups", force: :cascade do |t|
+    t.integer  "prayer_id"
+    t.integer  "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "prayer_groups", ["group_id"], name: "index_prayer_groups_on_group_id"
+  add_index "prayer_groups", ["prayer_id"], name: "index_prayer_groups_on_prayer_id"
 
   create_table "prayers", force: :cascade do |t|
     t.string   "name"

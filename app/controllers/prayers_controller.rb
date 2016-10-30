@@ -6,6 +6,9 @@ class PrayersController < ApplicationController
   def index
     if params[:user_id].present?
       @prayers = User.find(params[:user_id]).prayers
+    elsif params[:group_id].present?
+      @group = Group.find(params[:group_id])
+      @prayers = @group.prayers
     else
     @prayers = Prayer.all
     end
@@ -102,6 +105,6 @@ class PrayersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def prayer_params
-      params.require(:prayer).permit(:name, :description, :category, :pray, :status)
+      params.require(:prayer).permit(:name, :description, :category, :pray, :status, group_ids:[])
     end
 end

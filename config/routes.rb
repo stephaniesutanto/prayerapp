@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'prayers#index'
+  root to: 'groups#my_groups'
 
   resources :prayers do
     get "my_prayers", on: :collection
@@ -9,6 +9,13 @@ Rails.application.routes.draw do
     resources :comments 
   end
 
+  resources :groups do
+    resources :prayers 
+    get "my_groups", on: :collection
+    get 'join', :on => :member
+  end
+
+  resources :invites
   devise_for :users
 end
 

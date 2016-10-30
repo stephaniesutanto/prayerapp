@@ -20,13 +20,15 @@
     <%= f.text_area :description %>
   </div>
   <div class="field">
-    <%= f.label :category %><br>
-    <%= f.text_field :category %>
-  </div>
-  <div class="field">
     <%= f.label :Answered %><br>
     <%= f.check_box :status %>
   </div>
+
+  <div class="field">
+    <%= f.label :Add_to_which_group %><br>
+    <%= collection_check_boxes(:prayer, :group_ids, current_user.groups, :id, :groupname) %>
+  </div>
+
   <div class="actions">
     <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
     Add/Update Prayer
