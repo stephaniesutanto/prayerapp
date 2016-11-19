@@ -16,13 +16,12 @@
 </p>
 
 <p>
-  <strong>Category:</strong>
-  <%= @prayer.category %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @prayer.status %>
+  <strong>Answered status:</strong>
+  <% if @prayer.status? %>
+    <%= 'Yes' %>
+  <% else %>
+    <%= 'Not yet' %>
+  <% end %>
 </p>
 
 <% if @prayer.user.name != current_user.name %>
