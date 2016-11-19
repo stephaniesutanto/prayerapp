@@ -42,7 +42,7 @@
         <td>
           <% if prayer.user.name == current_user.name %>
             <%= link_to 'Edit', edit_prayer_path(prayer) %>
-            <%= link_to 'Delete', prayer, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to 'Delete', my_prayers_prayers_path, method: :delete, data: { confirm: 'Are you sure?' } %>
             <% else %>
             <%= link_to 'Show', prayer %>
             <% end %>

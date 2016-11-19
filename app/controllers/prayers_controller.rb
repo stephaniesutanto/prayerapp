@@ -92,7 +92,7 @@ class PrayersController < ApplicationController
   def destroy
     @prayer.destroy
     respond_to do |format|
-      format.html { redirect_to prayers_url, notice: 'Prayer was successfully destroyed.' }
+      format.html { redirect_to my_prayers_prayers_url, notice: 'Prayer was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

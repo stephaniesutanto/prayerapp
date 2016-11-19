@@ -23,7 +23,13 @@
         <td><%= prayer.name %></td>
         <td><%= prayer.user.name %></td>
         <td><%= prayer.description %></td>
-        <td><%= prayer.status %></td>
+        <td>
+          <% if prayer.status? %>
+          <%= 'Yes' %>
+          <% else %>
+          <%= 'Not yet' %>
+          <% end %>
+          </td>
         <td>
           <% if prayer.user.name == current_user.name %>
             <%= link_to 'Edit', edit_prayer_path(prayer) %>

@@ -50,6 +50,15 @@ end
   end
  end
 
+  def destroy
+    @group = Group.find(params[:id])
+    @group.destroy
+    respond_to do |format|
+      format.html { redirect_to :back, notice: 'Group was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
   def my_groups
     @groups = current_user.try(:groups)
   end

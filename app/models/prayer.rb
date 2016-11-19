@@ -6,4 +6,7 @@ class Prayer < ActiveRecord::Base
 	has_many :prayer_groups
 	has_many :groups, through: :prayer_groups
 	accepts_nested_attributes_for :prayer_groups, :allow_destroy => true
+	validates :name, :presence => true
+	validates :description, :presence => true
+	validates :groups, :presence => true
 end
