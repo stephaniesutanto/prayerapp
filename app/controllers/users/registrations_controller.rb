@@ -12,7 +12,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
    	 	@invite = Invite.find_by(token: @token)
    	 	@group = @invite.group
    	 	@invite.update_attributes(recipient_id: resource.id)
-   	 	@group.users << @invite.recipient
    	 	@redirect
    	 else
 	    after_sign_in_path_for(resource)
