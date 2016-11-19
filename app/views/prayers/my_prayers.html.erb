@@ -2,7 +2,6 @@
   <li role="presentation"><a href="/groups/my_groups">Home</a></li>
   <li role="presentation"><a href="/prayers/my_prayers">My Prayer Requests</a></li>
   <li role="presentation"><a href="/prayers/added_prayers">My Prayer Items</a></li>
-  <li role="presentation"><a href="/groups">All Groups</a></li>
   <li role="presentation"><a href="/groups/my_groups">My Groups</a></li>
 </ul>
 
@@ -18,6 +17,7 @@
       <th>Title</th>
       <th>Lister</th>
       <th>Description</th>
+      <th>Group</th>
       <th>Answered</th>
       <th colspan="3">Actions</th>
     </tr>
@@ -29,6 +29,7 @@
         <td><%= prayer.name %></td>
         <td><%= prayer.user.name %></td>
         <td><%= prayer.description %></td>
+        <td><%= prayer.groups.collect(&:groupname).join(', ') %></td>
         <td><%= prayer.status %></td>
         <td>
           <% if prayer.user.name == current_user.name %>

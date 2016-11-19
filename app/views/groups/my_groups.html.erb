@@ -2,10 +2,9 @@
   <li role="presentation"><a href="/groups/my_groups">Home</a></li>
   <li role="presentation"><a href="/prayers/my_prayers">My Prayer Requests</a></li>
   <li role="presentation"><a href="/prayers/added_prayers">My Prayer Items</a></li>
-  <li role="presentation"><a href="/groups">All Groups</a></li>
   <li role="presentation"><a href="/groups/my_groups">My Groups</a></li>
 </ul>
-<h3>My Groups</h3>
+<h3><%= current_user.name %>'s Groups</h3>
 <p></p>
 <%= link_to 'Create New Group', new_group_path, :class => "btn btn-primary" %>
 <p></p>
@@ -34,10 +33,11 @@
         </td>
         <td>
             <% if group.user.try(:name) == current_user.name %>
-            <%= link_to 'Edit', edit_group_path(group) %>
+            <%= link_to 'Invite', new_group_invite_path(group) %> |
+            <%= link_to 'Edit', edit_group_path(group) %> | 
             <%= link_to 'Delete', group, method: :delete, data: { confirm: 'Are you sure?' } %>
             <% else %>
-            <%= link_to 'Invite', new_group_invite_path(group), class: 'btn btn-primary' %>
+            <%= link_to 'Invite', new_group_invite_path(group) %>
             <% end %>
           </td>
       </tr>
@@ -45,3 +45,8 @@
   </tbody>
 </table>
 
+<% if user_signed_in? %>
+  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+<% else %>
+  <%= link_to('Login', new_user_session_path)  %>  
+<% end %>

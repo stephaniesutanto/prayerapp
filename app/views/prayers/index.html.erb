@@ -2,13 +2,12 @@
   <li role="presentation"><a href="/groups/my_groups">Home</a></li>
   <li role="presentation"><a href="/prayers/my_prayers">My Prayer Requests</a></li>
   <li role="presentation"><a href="/prayers/added_prayers">My Prayer Items</a></li>
-  <li role="presentation"><a href="/groups">All Groups</a></li>
   <li role="presentation"><a href="/groups/my_groups">My Groups</a></li>
 </ul>
 
 <h3>Hello, <%= current_user.name %></h3>
 
-<h3>Prayers for <%#= @group.groupname %></h3>
+<h3>Prayers for <%= @group.groupname %></h3>
 <p></p>
 <%= link_to 'Add New Prayer', new_prayer_path, :class => "btn btn-primary" %>
 <p></p>

@@ -7,6 +7,10 @@ end
 
 def new
 	@group = Group.new
+end  
+
+def edit
+  @group = Group.find(params[:id])
 end
 
 def create
@@ -18,6 +22,17 @@ def create
     	else
       	render :new
     	end
+end
+
+def update
+  @group = Group.find(params[:id])
+    respond_to do |format|
+      if @group.update(group_params)
+        format.html { redirect_to group_prayers_path(@group), notice: 'Group name was successfully updated.' }
+      else
+        format.html { render :edit }
+      end
+    end
 end
 
  def join
@@ -36,7 +51,7 @@ end
  end
 
   def my_groups
-    @groups = current_user.groups
+    @groups = current_user.try(:groups)
   end
 
 
