@@ -10,13 +10,14 @@ Rails.application.routes.draw do
   end
 
   resources :groups do
+    resources :invites 
     resources :prayers 
     get "my_groups", on: :collection
     get 'join', :on => :member
   end
 
-  resources :invites
-  devise_for :users
+  get 'invite/:token/verify' => 'invites#verify', as: :verify
+  devise_for :users, :controllers => {:registrations => "users/registrations"}
 end
 
   # The priority is based upon order of creation: first created -> highest priority.

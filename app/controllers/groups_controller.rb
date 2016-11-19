@@ -1,4 +1,5 @@
 class GroupsController < ApplicationController
+  before_action :authenticate_user!
 
 def index
 	@groups = Group.all
@@ -8,16 +9,16 @@ def new
 	@group = Group.new
 end
 
-  def create
-    @group = Group.new(group_params)
-    @group.user = current_user
-   		if @group.save
-   			@group.users << current_user
- 			redirect_to my_groups_groups_path, notice: "New group created!"
-      	else
-        	render :new
-      	end
-  end
+def create
+  @group = Group.new(group_params)
+  @group.user = current_user
+ 		if @group.save
+ 			@group.users << current_user
+			redirect_to my_groups_groups_path, notice: "New group created!"
+    	else
+      	render :new
+    	end
+end
 
  def join
 	@group = Group.find(params[:id])

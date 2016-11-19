@@ -1,6 +1,10 @@
-<%= form_for @invite, :url => invites_path do |f| %>
-	<%= f.hidden_field :group_id, :value=> @invite.group_id %>
-	<%= f.label :email %>
-	<%= f.email_field :email %>
-	<%= f.submit 'Send' %>
+<%= form_for [@group, @invite] do |f| %>
+	<div class="form-group">
+		  <div class="col-xs-3">
+			<%= f.label :email %>
+			<%= f.email_field :email, class: 'form-control ' %>
+			</br>
+			<%= f.submit 'Send', class: 'btn btn-primary' %>
+		  </div>
+	</div>
 <% end %>
